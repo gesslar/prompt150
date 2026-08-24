@@ -32,6 +32,7 @@ jobs:
           mkdir -p deploy
           cp -a src/. deploy/
           cp -a cron deploy/cron
+          cp cron/package.json deploy/package.json
 
       - name: Rsync deploy
         env:

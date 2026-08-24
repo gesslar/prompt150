@@ -43,7 +43,7 @@ Node under the website's Shell user, connect over SSH and run `which node`. Use
 the absolute path it returns in the cron command:
 
 ```cron
-0 3 * * 1 /absolute/path/from/which/node /home/USERNAME/prompt150.gesslar.io/cron/generate-weekly-prompts.js
+0 3 * * 1 /absolute/path/from/which/node /home/USERNAME/prompt150.gesslar.io/cron/generate-weekly-prompts.mjs
 ```
 
 DreamHost cron schedules use the server's Pacific time (PST/PDT), so the entry
@@ -53,7 +53,9 @@ through the DreamHost panel's Cron Jobs page.
 ## Deployment
 
 Pushes to `main` deploy the contents of `src/` together with the protected
-`cron/` directory over SSH and rsync. Configure these GitHub Actions secrets:
+`cron/` directory over SSH and rsync. The workflow also copies the cron
+directory's minimal `package.json` to the site root so Node treats the shared
+generator modules as ES modules. Configure these GitHub Actions secrets:
 
 - `SSH_PRIVATE_KEY`
 - `SFTP_SERVER`
