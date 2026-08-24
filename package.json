@@ -7,6 +7,6 @@
   "author": "gesslar",
   "scripts": {
     "dev": "npx live-server src/",
-    "prompts:weekly": "node cron/generate-weekly-prompts.js"
+    "prompts:weekly": "node cron/generate-weekly-prompts.mjs"
   }
 }
