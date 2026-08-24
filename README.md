@@ -55,7 +55,9 @@ through the DreamHost panel's Cron Jobs page.
 Pushes to `main` deploy the contents of `src/` together with the protected
 `cron/` directory over SSH and rsync. The workflow also copies the cron
 directory's minimal `package.json` to the site root so Node treats the shared
-generator modules as ES modules. Configure these GitHub Actions secrets:
+generator modules as ES modules. The cron-managed `data/weekly-prompts.json`
+file is excluded from rsync, so deployments neither overwrite nor delete the
+current weekly selection. Configure these GitHub Actions secrets:
 
 - `SSH_PRIVATE_KEY`
 - `SFTP_SERVER`

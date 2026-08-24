@@ -40,4 +40,4 @@ jobs:
           SFTP_USERNAME: ${{ secrets.SFTP_USERNAME }}
           SFTP_TARGET_DIR: ${{ secrets.SFTP_TARGET_DIR }}
         run: |
-          rsync -avz --delete -e "ssh" deploy/ "$SFTP_USERNAME@$SFTP_SERVER:$SFTP_TARGET_DIR"
+          rsync -avz --delete --exclude "data/weekly-prompts.json" -e "ssh" deploy/ "$SFTP_USERNAME@$SFTP_SERVER:$SFTP_TARGET_DIR"
