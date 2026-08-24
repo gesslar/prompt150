@@ -10,6 +10,9 @@ The site has three views:
 - `generate.html` starts with five random prompts and adds another whenever requested.
 - `about.html` explains the 150-word format and the two kinds of prompt selection.
 
+See [PROMPT_GUIDE.md](PROMPT_GUIDE.md) for the editorial and technical guidance
+used when adding new generative prompt families.
+
 ## Development
 
 ```sh
