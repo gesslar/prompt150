@@ -1,0 +1,42 @@
+name: RSYNC Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup SSH key
+        uses: webfactory/ssh-agent@v0.10.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add known host
+        env:
+          SFTP_SERVER: ${{ secrets.SFTP_SERVER }}
+        run: ssh-keyscan "$SFTP_SERVER" >> ~/.ssh/known_hosts
+
+      - name: Install rsync
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y rsync
+
+      - name: Assemble deployment
+        run: |
+          mkdir -p deploy
+          cp -a src/. deploy/
+          cp -a cron deploy/cron
+
+      - name: Rsync deploy
+        env:
+          SFTP_SERVER: ${{ secrets.SFTP_SERVER }}
+          SFTP_USERNAME: ${{ secrets.SFTP_USERNAME }}
+          SFTP_TARGET_DIR: ${{ secrets.SFTP_TARGET_DIR }}
+        run: |
+          rsync -avz --delete -e "ssh" deploy/ "$SFTP_USERNAME@$SFTP_SERVER:$SFTP_TARGET_DIR"

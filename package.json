@@ -1,7 +1,12 @@
 {
-  "name": "prompter",
+  "name": "prompt150",
   "version": "1.0.0",
-  "description": "A microfic prompt generator.",
+  "type": "module",
+  "description": "A prompt generator for 150-word microfiction.",
   "license": "0BSD",
-  "author": "gesslar"
+  "author": "gesslar",
+  "scripts": {
+    "dev": "npx live-server src/",
+    "prompts:weekly": "node cron/generate-weekly-prompts.js"
+  }
 }

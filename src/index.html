@@ -1,13 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prompter</title>
-  <script type="module" src="script/index.js" defer></script>
+  <title>Prompt 150</title>
+  <meta name="description" content="Weekly prompts for writing 150-word microfiction.">
+  <script type="module" src="script/index.js"></script>
   <link rel="stylesheet" href="style/index.css">
 </head>
+
 <body>
-<div id="prompt"></div>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <div class="shell">
+    <header class="masthead">
+      <div class="masthead__identity">
+        <h1 class="wordmark">Prompt <span>150</span></h1>
+        <p class="tagline">Prompts for 150-word microfiction</p>
+      </div>
+      <div class="masthead__actions">
+        <nav class="site-nav" aria-label="Main navigation">
+          <a class="nav-link" href="generate.html">Generate prompts</a>
+          <a class="nav-link" href="about.html">What is this?</a>
+        </nav>
+        <theme-toggle></theme-toggle>
+      </div>
+    </header>
+
+    <main class="stage">
+      <p class="hero-copy">
+        Five beginnings, chosen for the week ahead. Follow one wherever it leads,
+        return to another tomorrow, or carry a single idea through all seven days.
+      </p>
+      <header class="page-heading">
+        <p class="page-heading__eyebrow">Five starts for the next seven days</p>
+        <h2 class="page-heading__title">This week&rsquo;s prompts</h2>
+        <p class="page-heading__date" data-generated-date aria-live="polite"></p>
+      </header>
+      <ol class="prompt-list" data-weekly-prompts aria-live="polite">
+        <li class="prompt-list__message">Gathering this week&rsquo;s prompts&hellip;</li>
+      </ol>
+    </main>
+
+    <footer class="colophon">
+      <p>Come back next week for five new beginnings.</p>
+    </footer>
+  </div>
 </body>
+
 </html>

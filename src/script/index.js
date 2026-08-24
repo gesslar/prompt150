@@ -1,46 +1,38 @@
-import prompts from "./prompts1.js"
+import "./components/theme-toggle.js"
+import {paintPromptList} from "./prompt-list.js"
 
-function getPrompt() {
-  const selected = elementOf(prompts)
+async function boot() {
+  const list = document.querySelector("[data-weekly-prompts]")
+  const date = document.querySelector("[data-generated-date]")
 
-  if(!Array.isArray(selected) || selected.length < 1)
-    return `Error: Invalid prompt format. Array expected, got ${typeof selected}.`
+  if(!list)
+    return
 
-  const [line, ...def] = selected
+  try {
+    const response = await fetch("data/weekly-prompts.json", {cache: "no-cache"})
 
-  let prompt = line
+    if(!response.ok)
+      throw new Error(`Weekly prompts could not be loaded (${response.status}).`)
 
-  while(prompt.match(/\{\d+\}/)) {
-    const {number} = /\{(?<number>\d+)\}/.exec(prompt)?.groups ?? {}
-    const match = `{${number}}`
-    const arrNumber = parseInt(number, 10) - 1
+    const weekly = await response.json()
 
-    if(!Array.isArray(def))
-      return `Error: Invalid definition for prompt ${line}`
+    if(!Array.isArray(weekly.prompts) || weekly.prompts.length < 1)
+      throw new Error("The weekly prompt file does not contain any prompts.")
 
-    if(!def || def.length < arrNumber + 1)
-      return `Error: Insufficient number of options for prompt ${line}, chosen: ${arrNumber + 1}`
+    paintPromptList(list, weekly.prompts)
 
-    const options = def[arrNumber]
-    const option = elementOf(options)
+    const generated = new Date(weekly.generatedAt)
 
-    prompt = prompt.replaceAll(match, option)
+    if(date && !Number.isNaN(generated.getTime()))
+      date.textContent = `Selected ${generated.toLocaleDateString(undefined, {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      })}`
+  } catch(error) {
+    list.innerHTML = `<li class="prompt-list__message prompt-list__message--error"></li>`
+    list.firstElementChild.textContent = error.message
   }
-
-  return `${capitalise(prompt)}...`
 }
 
-function generatePrompt() {
-  const div = document.getElementById("prompt")
-  div.innerText = getPrompt()
-}
-
-function elementOf(arr) {
-  return arr[Math.floor(Math.random() * arr.length)]
-}
-
-function capitalise(str) {
-  return `${str.at(0).toUpperCase()}${str.slice(1)}`
-}
-
-document.addEventListener("DOMContentLoaded", generatePrompt)
+boot()
