@@ -50,7 +50,7 @@ const beSubject = conjugate({first: "am", plain: "are", third: "is"})
 const modalSubject = ["could", "would", "should", "can", "might", "will"]
   .flatMap(modal => allPronouns.map(pronoun => `${modal} ${pronoun}`))
 
-export default [
+const prompts = [
   [
     "I {1}",
     ["love", "hate", "don't mind", "wish", "hope", "wonder", "dream of",],
@@ -134,6 +134,12 @@ export default [
     ["me", "us", "them"]
   ]
 ]
+
+export default prompts.map((family, id) => {
+  family.id = id
+
+  return family
+})
 
 /*
 [

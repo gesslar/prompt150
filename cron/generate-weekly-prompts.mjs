@@ -25,12 +25,13 @@ const outputDirectory = runsFromRepository
 const outputFile = resolve(outputDirectory, "weekly-prompts.json")
 const {getFreshPrompt} = await import(pathToFileURL(generatorFile))
 const prompts = []
+const previousFamilies = new Set()
 
 while(prompts.length < PROMPT_COUNT) {
-  const prompt = getFreshPrompt(prompts.at(-1))
+  const prompt = getFreshPrompt(previousFamilies)
 
-  if(!prompts.includes(prompt))
-    prompts.push(prompt)
+  previousFamilies.add(prompt.familyId)
+  prompts.push(prompt.text)
 }
 
 const weekly = {

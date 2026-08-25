@@ -11,6 +11,7 @@ const COPIED_LABEL = "Copied"
  */
 export default class PromptCard extends LightElement {
   #current = ""
+  #previous = new Set()
   #copyTimer = 0
 
   render() {
@@ -60,19 +61,20 @@ export default class PromptCard extends LightElement {
 
   /** Generate and display the next prompt. */
   next() {
-    let text
+    let prompt
 
     try {
-      text = getFreshPrompt(this.#current)
+      prompt = getFreshPrompt(this.#previous)
     } catch(error) {
       this.#show(error.message, true)
 
       return
     }
 
-    this.#current = text
-    this.#show(text, false)
-    this.emit("prompt:new", {text})
+    this.#current = prompt.text
+    this.#previous.add(prompt.familyId)
+    this.#show(this.prompt, false)
+    this.emit("prompt:new", {text: this.prompt})
   }
 
   /** Show an arbitrary prompt (used when replaying one from history). */
