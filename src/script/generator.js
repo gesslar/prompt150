@@ -26,14 +26,18 @@ function capitalise(str) {
  * Every failure is a malformed prompt table, so each one throws with the
  * offending template named rather than returning a half-substituted string.
  *
- * @returns {string} the finished prompt
+ * @returns {{familyId: number, text: string}} the finished prompt and its family
  * @throws {Error} when a template and its definitions disagree
  */
 export function getPrompt() {
+  return promptFrom(prompts)
+}
+
+function promptFrom(families) {
   if(!Array.isArray(prompts) || prompts.length < 1)
     throw new Error(`Empty prompt table. Non-empty array expected, got ${typeof prompts}.`)
 
-  const selected = elementOf(prompts)
+  const selected = elementOf(families)
 
   if(!Array.isArray(selected) || selected.length < 1)
     throw new Error(`Invalid prompt format. Array expected, got ${typeof selected}.`)
@@ -73,17 +77,15 @@ export function getPrompt() {
     prompt = prompt.replaceAll(match, option)
   }
 
-  return `${capitalise(prompt)}...`
+  return {familyId: selected.id, text: `${capitalise(prompt)}...`}
 }
 
 /**
- * Like getPrompt, but avoids repeating `previous` when it can.
+ * Like getPrompt, but avoids families present in `previousFamilies` until all
+ * families have been used.
  */
-export function getFreshPrompt(previous, attempts = 8) {
-  let prompt = getPrompt()
+export function getFreshPrompt(previousFamilies = new Set()) {
+  const available = prompts.filter(family => !previousFamilies.has(family.id))
 
-  for(let i = 0; i < attempts && prompt === previous; i++)
-    prompt = getPrompt()
-
-  return prompt
+  return promptFrom(available.length > 0 ? available : prompts)
 }
