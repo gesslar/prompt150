@@ -33,6 +33,47 @@ export function getPrompt() {
   return promptFrom(prompts)
 }
 
+/**
+ * Counts distinct finished prompts across every family. Expanding into a Set
+ * handles conditional slots (options that introduce another placeholder) and
+ * prevents identical wording in different families from being counted twice.
+ */
+export function countPossiblePrompts() {
+  const possible = new Set()
+
+  for(const [line, ...definitions] of prompts) {
+    for(const prompt of expandPrompt(line, definitions))
+      possible.add(`${capitalise(prompt)}...`)
+  }
+
+  return possible.size
+}
+
+function expandPrompt(prompt, definitions, pass = 0) {
+  const slot = PLACEHOLDER.exec(prompt)
+
+  if(!slot)
+    return [prompt]
+
+  if(pass >= MAX_PASSES)
+    throw new Error(`Prompt ${prompt} still has slots after ${MAX_PASSES} passes; an option is probably self-referential.`)
+
+  const {number} = slot.groups
+  const match = `{${number}}`
+  const index = parseInt(number, 10) - 1
+  const options = definitions[index]
+
+  if(!Array.isArray(options) || options.length < 1)
+    throw new Error(`Invalid definition ${index + 1} for prompt ${prompt}. Non-empty array expected.`)
+
+  return options.flatMap(option => {
+    if(typeof option !== "string")
+      throw new Error(`Invalid option in definition ${index + 1} for prompt ${prompt}. String expected, got ${typeof option}.`)
+
+    return expandPrompt(prompt.replaceAll(match, option), definitions, pass + 1)
+  })
+}
+
 function promptFrom(families) {
   if(!Array.isArray(prompts) || prompts.length < 1)
     throw new Error(`Empty prompt table. Non-empty array expected, got ${typeof prompts}.`)
