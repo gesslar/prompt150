@@ -1,5 +1,5 @@
 import "./components/theme-toggle.js"
-import {getFreshPrompt} from "./generator.js"
+import {countPossiblePrompts, getFreshPrompt} from "./generator.js"
 import {promptListItem} from "./prompt-list.js"
 
 const INITIAL_COUNT = 5
@@ -7,8 +7,11 @@ const MAX_UNIQUE_ATTEMPTS = 16
 const list = document.querySelector("[data-generated-prompts]")
 const addButton = document.querySelector("[data-action='add']")
 const regenerateButton = document.querySelector("[data-action='regenerate']")
+const possiblePromptCount = document.querySelector("[data-possible-prompt-count]")
 const previous = new Set()
 const generated = new Set()
+
+possiblePromptCount.textContent = new Intl.NumberFormat().format(countPossiblePrompts())
 
 function appendPrompt(entering = true) {
   let prompt = getFreshPrompt(previous)
