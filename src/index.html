@@ -41,10 +41,11 @@
       </p>
       <header class="page-heading">
         <p class="page-heading__eyebrow">Five starts for the next seven days</p>
-        <h2 class="page-heading__title">This week&rsquo;s prompts</h2>
+        <h2 class="page-heading__title" id="weekly-prompts-heading">This week&rsquo;s prompts</h2>
         <p class="page-heading__date" data-generated-date aria-live="polite"></p>
       </header>
-      <ol class="prompt-list" data-weekly-prompts aria-live="polite">
+      <ol class="prompt-list" data-weekly-prompts aria-labelledby="weekly-prompts-heading"
+        aria-live="polite" aria-busy="true">
         <li class="prompt-list__message">Gathering this week&rsquo;s prompts&hellip;</li>
       </ol>
     </main>

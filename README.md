@@ -83,3 +83,4 @@ licenses:
 | Dependency | License |
 | --- | --- |
 | [codicons](https://microsoft.github.io/vscode-codicons) | MIT |
+

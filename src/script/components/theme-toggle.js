@@ -11,9 +11,10 @@ const STORAGE_KEY = "prompter:theme"
 export default class ThemeToggle extends LightElement {
   render() {
     return `
-      <button class="button button--icon" type="button" data-action="toggle" aria-pressed="false">
+      <button class="button button--icon" type="button" data-action="toggle" role="switch"
+        aria-checked="false">
         <span class="theme-toggle__glyph" aria-hidden="true"></span>
-        <span class="visually-hidden">Toggle colour theme</span>
+        <span class="visually-hidden">Dark colour theme</span>
       </button>
     `
   }
@@ -38,7 +39,7 @@ export default class ThemeToggle extends LightElement {
 
     const button = this.$("[data-action='toggle']")
 
-    button.setAttribute("aria-pressed", String(theme === "dark"))
+    button.setAttribute("aria-checked", String(theme === "dark"))
     button.querySelector(".theme-toggle__glyph").textContent = theme === "dark" ? "☾" : "☀"
   }
 
