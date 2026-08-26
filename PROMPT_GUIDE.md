@@ -1,7 +1,7 @@
 # Prompt 150 authoring guide
 
-This document is guidance for humans and coding agents adding prompt families to
-`src/script/prompts1.js`.
+This document is guidance for humans and coding agents adding prompt families
+to `src/script/prompts1.js`.
 
 ## Purpose
 
@@ -13,8 +13,8 @@ effect is:
 
 > Oh, I know how this sentence continues.
 
-It should not ask the writer to accept, explain, or escape a premise supplied by
-the generator.
+It should not ask the writer to accept, explain, or escape a premise supplied
+by the generator.
 
 The governing principle is:
 
@@ -27,17 +27,18 @@ A good prompt:
 - creates immediate grammatical momentum;
 - can continue naturally in several unrelated directions;
 - is short enough to earn every word it takes from the 150-word limit;
-- leaves setting, genre, conflict, imagery, character, and meaning to the writer;
+- leaves setting, genre, conflict, imagery, character, and meaning to the
+  writer;
 - can become sincere, ironic, comic, tender, mundane, horrific, or strange;
 - stops immediately before the writer's own idea begins.
 
 The prompt does not need to be evocative in isolation. It needs to be
 **grammatically fertile**.
 
-Short speech acts and sentence frames are often productive because they establish
-voice without establishing narrative. An opening can express gratitude, doubt,
-recommendation, regret, or a question while leaving the object and circumstances
-entirely open.
+Short speech acts and sentence frames are often productive because they
+establish voice without establishing narrative. An opening can express
+gratitude, doubt, recommendation, regret, or a question while leaving the
+object and circumstances entirely open.
 
 ## What to avoid
 
@@ -61,8 +62,8 @@ direction.
 ### Be cautious with concrete nouns
 
 Objects, named places, occupations, weather, physical settings, and decorative
-images often decide too much. A concrete word is not automatically wrong, but it
-must do more good than the narrative obligation it creates.
+images often decide too much. A concrete word is not automatically wrong, but
+it must do more good than the narrative obligation it creates.
 
 Abstract language is not automatically safe either. A phrase such as
 "Somewhere, someone was waiting" is not object-heavy, but it still commits the
@@ -101,8 +102,8 @@ Each prompt family is an array:
 Slots are one-based. `{1}` uses the first definition array, `{2}` the second,
 and so on. Every definition must be a non-empty array of strings.
 
-The generator capitalizes the completed prompt and appends `...`. Punctuation in
-the template belongs to the supplied opening and is preserved. For example:
+The generator capitalizes the completed prompt and appends `...`. Punctuation
+in the template belongs to the supplied opening and is preserved. For example:
 
 ```js
 [
@@ -149,9 +150,9 @@ The generator detects unresolved loops after 32 passes and throws an error.
 ## Grammar and agreement
 
 Every possible generated result must be grammatically viable. Do not combine
-subjects and verbs independently when agreement can break. Reuse the pronoun and
-conjugation helpers already in `prompts1.js`, or pre-compose dependent phrases
-into a single option list.
+subjects and verbs independently when agreement can break. Reuse the pronoun
+and conjugation helpers already in `prompts1.js`, or pre-compose dependent
+phrases into a single option list.
 
 For example, pairing `does` with `she` before random selection is safer than
 selecting an auxiliary and pronoun from unrelated arrays.
@@ -183,21 +184,22 @@ narrative channel.
 
 The author's [`150brief` archive](https://inscrive.blogspot.com/search/label/150brief)
 shows the intended relationship between prompt and story. The pieces frequently
-take extremely plain openings in dark, comic, intimate, speculative, or otherwise
-unexpected directions. Seasonal context does not require seasonal content, and
-an innocent speech act may become sincere, coercive, ironic, or horrifying.
+take extremely plain openings in dark, comic, intimate, speculative, or
+otherwise unexpected directions. Seasonal context does not require seasonal
+content, and an innocent speech act may become sincere, coercive, ironic, or
+horrifying.
 
-Use the archive to understand how little the prompt needs to decide. Do not copy
-its subject matter, imagery, darkness, or twists into new prompt options. Those
-belong to the writer.
+Use the archive to understand how little the prompt needs to decide. Do not
+copy its subject matter, imagery, darkness, or twists into new prompt options.
+Those belong to the writer.
 
 ## Workflow for future agents
 
 1. Read this guide, `src/script/prompts1.js`, and `src/script/generator.js`.
 2. Preserve the author's current prompt edits and vocabulary choices.
 3. Draft a small number of families at a time.
-4. Explain what grammatical momentum each family supplies and what it deliberately
-   leaves undecided.
+4. Explain what grammatical momentum each family supplies and what it
+   deliberately leaves undecided.
 5. Treat subjective feedback as editorial direction, not an edge case.
 6. Test every branch, including options that introduce nested slots.
 7. Generate a large sample and reject unresolved placeholders, runtime errors,
