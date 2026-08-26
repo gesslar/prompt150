@@ -14,12 +14,13 @@ export default class PromptHistory extends LightElement {
 
   render() {
     return `
-      <section class="history" hidden>
+      <section class="history" aria-labelledby="recent-prompts-heading" hidden>
         <header class="history__header">
-          <h2 class="history__title">Recent</h2>
-          <button class="button button--quiet" type="button" data-action="clear">Clear</button>
+          <h2 class="history__title" id="recent-prompts-heading">Recent</h2>
+          <button class="button button--quiet" type="button" data-action="clear"
+            aria-controls="recent-prompts-list">Clear</button>
         </header>
-        <ul class="history__list" data-list></ul>
+        <ul class="history__list" id="recent-prompts-list" data-list aria-live="polite"></ul>
       </section>
     `
   }

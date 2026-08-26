@@ -32,6 +32,8 @@ async function boot() {
   } catch(error) {
     list.innerHTML = `<li class="prompt-list__message prompt-list__message--error"></li>`
     list.firstElementChild.textContent = error.message
+  } finally {
+    list.setAttribute("aria-busy", "false")
   }
 }
 

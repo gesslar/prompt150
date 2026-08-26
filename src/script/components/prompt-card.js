@@ -18,12 +18,14 @@ export default class PromptCard extends LightElement {
     return `
       <article class="card">
         <p class="card__eyebrow">Microfiction prompt</p>
-        <p class="card__prompt" data-prompt role="status" aria-live="polite"></p>
+        <p class="card__prompt" id="current-prompt" data-prompt role="status" aria-live="polite"></p>
         <div class="card__actions">
-          <button class="button button--primary" type="button" data-action="new">
+          <button class="button button--primary" type="button" data-action="new"
+            aria-controls="current-prompt" aria-keyshortcuts="Space Enter">
             <span aria-hidden="true">&#9733;</span> New prompt
           </button>
-          <button class="button" type="button" data-action="copy">${COPY_LABEL}</button>
+          <button class="button" type="button" data-action="copy" aria-controls="current-prompt"
+            aria-keyshortcuts="C" aria-live="polite">${COPY_LABEL}</button>
         </div>
       </article>
     `
@@ -93,17 +95,23 @@ export default class PromptCard extends LightElement {
       await navigator.clipboard.writeText(this.#current)
     } catch {
       button.textContent = "Copy failed"
+      button.setAttribute("aria-label", "Could not copy the current prompt")
       clearTimeout(this.#copyTimer)
-      this.#copyTimer = setTimeout(() => (button.textContent = COPY_LABEL), 1600)
+      this.#copyTimer = setTimeout(() => {
+        button.textContent = COPY_LABEL
+        button.removeAttribute("aria-label")
+      }, 1600)
 
       return
     }
 
     button.textContent = COPIED_LABEL
+    button.setAttribute("aria-label", "Current prompt copied")
     button.classList.add("is-done")
     clearTimeout(this.#copyTimer)
     this.#copyTimer = setTimeout(() => {
       button.textContent = COPY_LABEL
+      button.removeAttribute("aria-label")
       button.classList.remove("is-done")
     }, 1600)
   }
@@ -113,6 +121,8 @@ export default class PromptCard extends LightElement {
 
     target.textContent = text
     target.classList.toggle("is-error", isError)
+    target.setAttribute("role", isError ? "alert" : "status")
+    target.setAttribute("aria-live", isError ? "assertive" : "polite")
 
     // Restart the entrance animation.
     target.classList.remove("is-entering")

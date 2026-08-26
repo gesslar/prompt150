@@ -42,16 +42,19 @@
       <header class="page-heading page-heading--with-action">
         <div>
           <p class="page-heading__eyebrow">Keep going for as long as you like</p>
-          <h2 class="page-heading__title">Generate prompts</h2>
+          <h2 class="page-heading__title" id="generated-prompts-heading">Generate prompts</h2>
         </div>
         <div class="page-heading__actions">
-          <button class="button" type="button" data-action="add">Add a prompt</button>
-          <button class="button button--primary" type="button" data-action="regenerate">
+          <button class="button" type="button" data-action="add" aria-controls="generated-prompts"
+            aria-keyshortcuts="Space">Add a prompt</button>
+          <button class="button button--primary" type="button" data-action="regenerate"
+            aria-controls="generated-prompts">
             <span aria-hidden="true">&#9733;</span> Regenerate prompts
           </button>
         </div>
       </header>
-      <ol class="prompt-list" data-generated-prompts aria-live="polite"></ol>
+      <ol class="prompt-list" id="generated-prompts" data-generated-prompts
+        aria-labelledby="generated-prompts-heading" aria-live="polite"></ol>
     </main>
 
     <footer class="colophon">
