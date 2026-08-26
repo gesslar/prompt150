@@ -76,3 +76,11 @@ For DreamHost, `SFTP_SERVER` is the website user's assigned server hostname and
 ## License
 
 `prompt150` is released under the [0BSD](LICENSE.txt).
+
+This package includes or depends on third-party components under their own
+licenses:
+
+| Dependency | License |
+| --- | --- |
+| [codicons](https://microsoft.github.io/vscode-codicons) | MIT |
+
