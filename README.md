@@ -72,3 +72,7 @@ GitHub Actions secrets:
 For DreamHost, `SFTP_SERVER` is the website user's assigned server hostname and
 `SFTP_TARGET_DIR` is normally the full domain directory, such as
 `/home/USERNAME/prompt150.gesslar.io/`.
+
+## License
+
+`prompt150` is released under the [0BSD](LICENSE.txt).
