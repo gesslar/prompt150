@@ -132,11 +132,37 @@ const prompts = [
   [
     "It took {1}",
     ["me", "us", "them"]
+  ],
+  [
+    "Suppose {1}",
+    allPronouns
+  ],
+  [
+    "Although {1}",
+    allPronouns
+  ],
+  [
+    "I was told {1}",
+    ["that", "to", "not to"]
+  ],
+  [
+    "What {1} meant was",
+    allPronouns
+  ],
+  [
+    "I {1} know {2}",
+    ["don't", "didn't", "want to"],
+    question
+  ],
+  [
+    "{1} {2} have known",
+    personPronouns,
+    ["should", "couldn't", "might"]
   ]
 ]
 
-export default prompts.map((family, id) => {
-  family.id = id
+export default prompts.map((family, index) => {
+  family.id = index
 
   return family
 })
