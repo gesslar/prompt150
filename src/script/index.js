@@ -20,6 +20,7 @@ async function boot() {
       throw new Error("The weekly prompt file does not contain any prompts.")
 
     paintPromptList(list, weekly.prompts)
+    document.querySelector("[data-action='copy-all']").disabled = false
 
     const generated = new Date(weekly.generatedAt)
 

@@ -39,12 +39,16 @@
         Five beginnings, chosen for the week ahead. Follow one wherever it leads,
         return to another tomorrow, or carry a single idea through all seven days.
       </p>
-      <header class="page-heading">
-        <p class="page-heading__eyebrow">Five starts for the next seven days</p>
-        <h2 class="page-heading__title" id="weekly-prompts-heading">This week&rsquo;s prompts</h2>
-        <p class="page-heading__date" data-generated-date aria-live="polite"></p>
+      <header class="page-heading page-heading--with-action">
+        <div>
+          <p class="page-heading__eyebrow">Five starts for the next seven days</p>
+          <h2 class="page-heading__title" id="weekly-prompts-heading">This week&rsquo;s prompts</h2>
+          <p class="page-heading__date" data-generated-date aria-live="polite"></p>
+        </div>
+        <button class="button" type="button" data-action="copy-all"
+          aria-controls="weekly-prompts" disabled>Copy all</button>
       </header>
-      <ol class="prompt-list" data-weekly-prompts aria-labelledby="weekly-prompts-heading"
+      <ol class="prompt-list" id="weekly-prompts" data-weekly-prompts aria-labelledby="weekly-prompts-heading"
         aria-live="polite" aria-busy="true">
         <li class="prompt-list__message">Gathering this week&rsquo;s prompts&hellip;</li>
       </ol>

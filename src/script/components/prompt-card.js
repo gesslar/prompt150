@@ -90,9 +90,10 @@ export default class PromptCard extends LightElement {
       return
 
     const button = this.$("[data-action='copy']")
+    const copyText = this.#current.replace(/\.\.\.$/, "")
 
     try {
-      await navigator.clipboard.writeText(this.#current)
+      await navigator.clipboard.writeText(copyText)
     } catch {
       button.textContent = "Copy failed"
       button.setAttribute("aria-label", "Could not copy the current prompt")
