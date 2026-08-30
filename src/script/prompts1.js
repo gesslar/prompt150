@@ -75,7 +75,7 @@ const prompts = [
   ],
   [
     "Before {1} noticed",
-    ["anyone", "I", "we", "they", "the neighbours"]
+    ["anyone", "I", "we", "they",]
   ],
   [
     "The trouble with {1}",
