@@ -40,6 +40,24 @@ establish voice without establishing narrative. An opening can express
 gratitude, doubt, recommendation, regret, or a question while leaving the
 object and circumstances entirely open.
 
+### Leave semantic completion to the author
+
+A prompt may supply a verb when it creates a grammatical ledge. Openings such
+as `I love...`, `I recommend...`, and `I don't understand why...` establish a
+speech act or stance, but the author still supplies the object, event, and
+meaning that complete the thought.
+
+The important boundary is not the presence of a verb. It is whether the prompt
+has completed its first meaningful claim. `This time, she...`, `If only we...`,
+and `At first, it...` ask the author simply to finish the sentence in their own
+way. By contrast, `This time, she stayed...`, `If only we had known...`, and
+`At first, nothing seemed wrong...` assert an event, realization, or condition
+that the author must inherit.
+
+The generator may provide grammatical direction. The author should provide
+the semantic completion: what happened, what was perceived, what was judged,
+or what proved important.
+
 ## What to avoid
 
 ### Do not supply a miniature premise
@@ -176,6 +194,8 @@ Before adding it, ask:
 8. Are all Cartesian combinations grammatical and semantically useful?
 9. Would nesting represent the branches more honestly?
 10. Is every supplied word worth counting against 150?
+11. Does the author complete the prompt's first meaningful thought, or has the
+    prompt completed it for them?
 
 Reject or revise the family if the answers reveal explanation debt or a narrow
 narrative channel.

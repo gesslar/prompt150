@@ -100,15 +100,15 @@ const prompts = [
   ],
   [
     "This time, {1}",
-    ["I stayed", "we listened", "they believed me", "it worked", "no one laughed"]
+    allPronouns
   ],
   [
     "If only {1}",
-    ["I had known", "we could remember", "it were that simple", "you had waited", "we had time"]
+    allPronouns
   ],
   [
     "At first, {1}",
-    ["I believed him", "nothing seemed wrong", "we heard nothing", "I saw nothing", "it felt familiar"]
+    allPronouns
   ],
   [
     "The {1} {2}",

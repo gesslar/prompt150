@@ -419,17 +419,25 @@ kbd {
 
 @media (max-width: 34rem) {
   .masthead {
-    align-items: stretch;
+    flex-direction: column;
+    gap: 1.25rem;
   }
 
   .masthead__actions {
-    align-items: flex-end;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    width: 100%;
   }
 
   .site-nav {
-    align-items: flex-end;
-    flex-direction: column;
-    gap: 0.35rem;
+    align-items: center;
+    gap: 1rem;
+    margin-right: auto;
+  }
+
+  .nav-link {
+    white-space: nowrap;
   }
 
   .page-heading--with-action {
