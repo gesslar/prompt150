@@ -85,8 +85,9 @@ const prompts = [
     ]
   ],
   [
-    "After {1} left",
-    ["everyone", ...allPronouns]
+    "After {1} ${2},",
+    ["everyone", ...allPronouns],
+    ["left", "arrived"]
   ],
   [
     "{1} was missing",
