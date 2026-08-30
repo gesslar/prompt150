@@ -149,7 +149,7 @@ const prompts = [
   ],
   [
     "{1} {2} know {3}",
-    personPronouns,
+    ["I", "you", "they", "we"],
     ["don't", "didn't", "didn't want to"],
     question
   ],
