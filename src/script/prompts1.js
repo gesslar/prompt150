@@ -158,6 +158,31 @@ const prompts = [
     "{1} {2} have known",
     personPronouns,
     ["should", "couldn't", "might"]
+  ],
+  [
+    "By the time {1}",
+    allPronouns
+  ],
+  [
+    "Even if {1}",
+    allPronouns
+  ],
+  [
+    "Even ${1}",
+    ["before {2}", "after {2}", "while {2}", "during the"],
+    [...allPronouns, "the"],
+  ],
+  [
+    "Let {1}",
+    ["me", "us", "them", "it"]
+  ],
+  [
+    "I keep {1}",
+    ["thinking", "forgetting", "wondering", "trying"]
+  ],
+  [
+    "{1} may have",
+    allPronouns
   ]
 ]
 
