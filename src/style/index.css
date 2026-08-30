@@ -413,6 +413,11 @@ kbd {
   text-decoration: none;
 }
 
+.text-link--inline {
+  display: inline;
+  margin-top: 0;
+}
+
 .text-link:hover {
   text-decoration: underline;
   text-underline-offset: 0.25em;
