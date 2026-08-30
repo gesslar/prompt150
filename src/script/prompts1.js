@@ -86,7 +86,7 @@ const prompts = [
   ],
   [
     "After {1} left",
-    ["everyone", "someone", "you", "we", "they"]
+    ["everyone", "someone", "you", "we", "they", "it"]
   ],
   [
     "{1} was missing",
