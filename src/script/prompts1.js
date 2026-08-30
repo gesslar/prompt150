@@ -79,12 +79,10 @@ const prompts = [
   ],
   [
     "The trouble with {1}",
-    ["memory", "promises", "mirrors", "coming home", "second chances", "the truth"]
-  ],
-  [
-    "No one {1} the {2}",
-    ["remembered", "noticed", "questioned", "expected"],
-    ["answer", "silence", "difference", "change"]
+    [
+      "memory", "promises", "mirrors", "coming home", "second chances",
+      "the truth", "leaving", "friends",
+    ]
   ],
   [
     "After {1} left",
