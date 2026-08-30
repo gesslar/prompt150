@@ -149,7 +149,7 @@ const prompts = [
   ],
   [
     "I {1} know {2}",
-    ["don't", "didn't", "want to"],
+    ["don't", "didn't", "didn't want to"],
     question
   ],
   [
