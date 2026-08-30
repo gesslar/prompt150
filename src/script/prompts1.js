@@ -168,7 +168,7 @@ const prompts = [
     allPronouns
   ],
   [
-    "Even ${1}",
+    "Even {1}",
     ["before {2}", "after {2}", "while {2}", "during the"],
     [...allPronouns, "the"],
   ],
@@ -183,6 +183,16 @@ const prompts = [
   [
     "{1} may have",
     allPronouns
+  ],
+  [
+    "It's {1} {2}",
+    ["easy", "hard"],
+    ["when", "to"]
+  ],
+  [
+    "It gets {1} {2}",
+    ["easier", "harder"],
+    ["when", "to"]
   ]
 ]
 
