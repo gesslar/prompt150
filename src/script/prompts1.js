@@ -163,6 +163,14 @@ const prompts = [
     allPronouns
   ],
   [
+    "After {1}",
+    allPronouns
+  ],
+  [
+    "Every time {1}",
+    allPronouns
+  ],
+  [
     "Even if {1}",
     allPronouns
   ],
